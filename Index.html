@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Note To-Do List</title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="sticky-note">
+      <h1>To-Do List</h1>
+      <input type="text" id="taskInput" placeholder="Add new task..." />
+      <button id="addTaskBtn">Add Task</button>
+      <ul id="taskList"></ul>
+      <button id="showDeletedTasksBtn">Show Deleted Tasks</button>
+      <ul id="deletedTaskList" style="display: none;"></ul>
+    </div>
+    <!-- Include Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.9/firebase-database.js"></script>
+    <!-- Include firebaseConfig.js -->
+    <script src="/firebaseConfig.js"></script>
+    <!-- Include app.js -->
+    <script src="/app.js"></script>
+    <!-- Register service worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            }, (error) => {
+              console.log('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
